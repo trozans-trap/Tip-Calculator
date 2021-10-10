@@ -16,13 +16,28 @@ $(document).ready(function(){
     });
 });
 
-let billVal = document.getElementById("billVal").value;
-let tipPerc = document.getElementById("tipPerc").value;
-let peopleNum = document.getElementById("peopleNum").value;
-let tipVal = document.getElementById("tipVal");
-let totalPerPerson = document.getElementById("totalPerPerson");
-let tipChange = (e)=>{
-    console.log("hi",e);
-    let x = document.getElementById("tip%").value;
-    console.log(x);
+let billVal = 0;
+let tipPerc = 0;
+let peopleNum = 0;
+console.log(billVal);
+console.log(tipPerc);
+console.log(peopleNum);
+
+let billValChange = ()=>{
+    billVal = document.getElementById("billVal").value;
+    document.getElementById("tipVal").innerHTML = billVal*tipPerc/peopleNum;
+    document.getElementById("totalPerPerson").innerHTML = billVal/peopleNum +billVal*tipPerc/peopleNum;
 }
+
+let tipChange = ()=>{
+    tipPerc = document.getElementById("tipPerc").value;
+    document.getElementById("tipVal").innerHTML = billVal*tipPerc/100;
+    document.getElementById("totalPerPerson").innerHTML = Math.round(((billVal/peopleNum) +(billVal*tipPerc)/100)*100)/100;
+}
+
+let peopleNumChange = ()=>{
+    peopleNum = document.getElementById("peopleNum").value;
+    document.getElementById("tipVal").innerHTML = billVal*tipPerc/100;
+    document.getElementById("totalPerPerson").innerHTML = Math.round(((billVal/peopleNum) +(billVal*tipPerc)/100)*100)/100;
+}
+    

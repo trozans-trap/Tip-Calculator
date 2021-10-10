@@ -52,7 +52,7 @@
                     <form autocomplete="on">
                         <div class="mb-3">
                             <label for="billVal" class="form-label">Bill</label>
-                            <input type="number" class="form-control" id="billVal" min="1" required>
+                            <input type="number" class="form-control" id="billVal" onchange="billValChange(this)" min="0" value="0" required>
                         </div>
                         <div class="mb-3 number">
                             <label for="tipPerc" class="form-label">Tip %</label>
@@ -65,7 +65,7 @@
                             <label for="peopleNum" class="form-label">Number Of People</label>
                             <br>
                             <span class="minus">-</span>
-                            <input type="text" value="1" id="peopleNum"/>
+                            <input type="text" value="1" id="peopleNum" onchange="peopleNumChange(this)"/>
                             <span class="plus">+</span>
                         </div>
                         <!-- <div class="mb-3">
@@ -88,7 +88,7 @@
                                     <!-- <div class="d-flex flex-column bd-highlight mb-3"> -->
                                         <div class="d-inline"><h4 style="font-size: 2.5rem; float: left;">Tip </h4></div>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <div class="d-inline"><h4 style="font-size: 2.8rem; color:rgb(140, 143, 146);" id="tipVal"> $25.00</h4></div>
+                                        <div class="d-inline"><h4 id="tipVal" style="font-size: 2.8rem; color:rgb(140, 143, 146);" > $25.00</h4></div>
                                     <!-- </div> -->
                                 </div>
                                 
