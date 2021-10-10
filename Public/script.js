@@ -1,4 +1,8 @@
 // console.log("HI");
+// var currencies = '<%- JSON.stringify(curr) %>';
+// for(itr in currencies){
+    // console.log(JSON.parse(currencies));
+// }
 let decr = (flag,id)=>{
     let val = document.getElementById(id).value;
     if(val<=0){
@@ -6,23 +10,22 @@ let decr = (flag,id)=>{
         return false;
     }
     document.getElementById(id).value=parseInt(val)-1;
+    billValChange();
 }
 
 let incr = (flag,id)=>{
     let val = document.getElementById(id).value;
     if(val>=100 && flag==0){
-        alert("Can't be more than ",val);
+        alert("Can't be more than " + val);
         return false;
     }
-    document.getElementById(id).value=parseInt(val)+1;
+    document.getElementById(id).value=parseInt(val) + 1;
+    billValChange();
 };
 
 let billVal = 0;
 let tipPerc = 0;
 let peopleNum = 0;
-console.log(billVal);
-console.log(tipPerc);
-console.log(peopleNum);
 let si = [
     {v: 1E3, s: "K"},
     {v: 1E6, s: "M"},
@@ -45,31 +48,7 @@ let convertBig = (num)=>{
 
 let billValChange = ()=>{
     billVal = document.getElementById("billVal").value;
-    let tipVal = 0,totalPerPerson=0;
-    if(peopleNum>0){
-        tipVal = Math.round(((billVal*tipPerc)/100)*100)/100;
-        totalPerPerson = Math.round(((billVal/peopleNum) +(billVal*tipPerc)/100)*100)/100;
-    }
-    if(tipVal>1000)tipVal=convertBig(tipVal);
-    if(totalPerPerson>1000)totalPerPerson=convertBig(totalPerPerson);
-    document.getElementById("tipVal").innerHTML = tipVal;
-    document.getElementById("totalPerPerson").innerHTML = totalPerPerson;
-}
-
-let tipChange = ()=>{
     tipPerc = document.getElementById("tipPerc").value;
-    let tipVal = 0,totalPerPerson=0;
-    if(peopleNum>0){
-        tipVal = Math.round(((billVal*tipPerc)/100)*100)/100;
-        totalPerPerson = Math.round(((billVal/peopleNum) +(billVal*tipPerc)/100)*100)/100;
-    }
-    if(tipVal>1000)tipVal=convertBig(tipVal);
-    if(totalPerPerson>1000)totalPerPerson=convertBig(totalPerPerson);
-    document.getElementById("tipVal").innerHTML = tipVal;
-    document.getElementById("totalPerPerson").innerHTML = totalPerPerson;
-}
-
-let peopleNumChange = ()=>{
     peopleNum = document.getElementById("peopleNum").value;
     let tipVal = 0,totalPerPerson=0;
     if(peopleNum>0){
@@ -81,4 +60,6 @@ let peopleNumChange = ()=>{
     document.getElementById("tipVal").innerHTML = tipVal;
     document.getElementById("totalPerPerson").innerHTML = totalPerPerson;
 }
+
+
     

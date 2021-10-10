@@ -19,6 +19,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="/style.css">
+    <script type="text/javascript" >
+        console.log(
+            
+        );
+    </script>
     <style>
         input::-webkit-outer-spin-button,
         input::-webkit-inner-spin-button {
@@ -68,7 +73,7 @@
                             <label for="tipPerc" class="form-label">Tip %</label>
                             <br>
                             <span class="minus" onclick="decr(0,'tipPerc')">-</span>
-                            <input type="text" value="0" onkeydown="billValChange()" onchange="tipChange()"
+                            <input type="text" value="0" onchange="billValChange()"
                                 id="tipPerc" />
                             <span class="plus" onclick="incr(0,'tipPerc')">+</span>
                         </div>
@@ -76,22 +81,11 @@
                             <label for="peopleNum" class="form-label">Number Of People</label>
                             <br>
                             <span class="minus" onclick="decr(1,'peopleNum')" >-</span>
-                            <input type="text" value="0" id="peopleNum" onkeydown="billValChange()"
-                                onchange="peopleNumChange()" />
+                            <input type="text" value="0" id="peopleNum" onchange="billValChange()" />
                             <span class="plus" onclick="incr(1,'peopleNum')">+</span>
                         </div>
-                        <!-- <div class="mb-3">
-                            <label for="tip%" class="form-label">Tip %</label>
-                            <input type="number" class="form-control" id="tip%" min="0" max="100" required>
-                        </div> -->
-                        <!-- <div class="mb-3">
-                            <label for="numberOfPeople" class="form-label">Number Of People</label>
-                            <input type="number" class="form-control" id="numberOfPeople" min="1" required>
-                        </div> -->
-                        <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
                     </form>
                 </div>
-                <!-- <div class="col-3"></div> -->
                 <div class="col-3 align-self-center ">
                     <br><br>
                     <div class="row align-items-center justify-content-center">
@@ -99,19 +93,20 @@
                         <div class="d-flex flex-column bd-highlight mb-3 justify-content-start">
                             <div class="d-flex flex-row mb-3 ">
                                 <div class="d-inline">
-                                    <h4 style="font-size: 2.5rem; float: left;">Tip </h4>
+                                    <h4 style="font-size: 2.5rem; float: left; margin-bottom: 0%;">Tip </h4>
+                                    <p class="justify-content-start">Per person</p>
                                 </div>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <div class="d-inline">
-                                    <h4 style="font-size: 2.8rem; color:rgb(140, 143, 146);"><span
-                                            class="currency">$</span><span id="tipVal">0.00</span></h4>
+                                    <h4 style="font-size: 2.8rem; color:rgb(140, 143, 146);"><span class="currency">$</span><span id="tipVal">0.00</span></h4>
                                 </div>
                             </div>
                         </div>
                         <div class="d-flex flex-column bd-highlight mb-4 ">
                             <div class="d-flex flex-row mb-3 ">
                                 <div class="d-inline">
-                                    <h4 style="font-size: 2.5rem;">Total </h4>
+                                    <h4 style="font-size: 2.5rem; margin-bottom: 0%;">Total </h4>
+                                    <p class="justify-content-start" style="margin-left: 10%; ">Per person</p>
                                 </div>
                                 &nbsp;&nbsp;&nbsp;
                                 <div class="d-inline ">
@@ -120,20 +115,10 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- <div class="d-flex flex-column bd-highlight mb-3">
-                                    <div class="d-inline"><h4>Tip </h4></div>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <div class="d-inline"><h4> $25.00</h4></div>
-                                </div> -->
-                        <!-- </div> -->
-
-                        <!-- </div> -->
                     </div>
                 </div>
                 <div class="col-3">
-                    <img src="https://image.freepik.com/free-vector/calculator-concept-illustration_114360-1194.jpg"
-                        alt="">
+                    <img src="https://image.freepik.com/free-vector/calculator-concept-illustration_114360-1194.jpg" alt="">
                 </div>
             </div>
         </div>
