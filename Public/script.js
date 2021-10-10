@@ -1,7 +1,7 @@
 setTimeout(()=>{ 
     document.getElementById("loader").innerHTML=""; 
     document.getElementById("content").style.display="block"
-}, 4000);
+}, 1000);
 // var currencies = '<%- JSON.stringify(curr) %>';
 // for(itr in currencies){
     // console.log(JSON.parse(currencies));
