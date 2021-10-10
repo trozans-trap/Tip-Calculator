@@ -4,7 +4,7 @@
   "description": "application to calculate per person tip for the input amount of bill",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app"
   },
   "repository": {
     "type": "git",
