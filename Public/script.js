@@ -1,25 +1,30 @@
-// console.log("HI");
+setTimeout(()=>{ 
+    document.getElementById("loader").innerHTML=""; 
+    document.getElementById("content").style.display="block"
+}, 4000);
 // var currencies = '<%- JSON.stringify(curr) %>';
 // for(itr in currencies){
     // console.log(JSON.parse(currencies));
 // }
 let decr = (flag,id)=>{
     let val = document.getElementById(id).value;
-    if(val<=0){
+    if(val<=0 || (flag==0 && parseInt(val)-50<0)){
         alert("Can't be in Negative .");
         return false;
     }
-    document.getElementById(id).value=parseInt(val)-1;
+    if(flag==0)document.getElementById(id).value=parseInt(val)-50;
+    else document.getElementById(id).value=parseInt(val)-1;
     billValChange();
 }
 
 let incr = (flag,id)=>{
     let val = document.getElementById(id).value;
-    if(val>=100 && flag==0){
-        alert("Can't be more than " + val);
+    if(val>=100 && flag==1){
+        alert("Tip Percentage can't be more than 100 %");
         return false;
     }
-    document.getElementById(id).value=parseInt(val) + 1;
+    if(flag==0)document.getElementById(id).value=parseInt(val)+50;
+    else document.getElementById(id).value=parseInt(val) + 1;
     billValChange();
 };
 
@@ -50,6 +55,14 @@ let billValChange = ()=>{
     billVal = document.getElementById("billVal").value;
     tipPerc = document.getElementById("tipPerc").value;
     peopleNum = document.getElementById("peopleNum").value;
+    if(tipPerc<0 || tipPerc>100){
+        alert("Invalid Tip Percentage");
+        return;
+    }
+    if(peopleNum<0){
+        alert("Number Of People Cant't be in negative");
+        return;
+    }
     let tipVal = 0,totalPerPerson=0;
     if(peopleNum>0){
         tipVal = Math.round(((billVal*tipPerc)/100)*100)/100;

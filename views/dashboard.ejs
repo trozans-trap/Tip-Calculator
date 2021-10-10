@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tip Calculator</title>
+    <link rel = "icon" href = "https://static.vecteezy.com/system/resources/thumbnails/000/351/160/small/4__289_29.jpg" type = "image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
         integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous">
     </script>
@@ -19,11 +20,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="/style.css">
-    <script type="text/javascript" >
-        console.log(
-            
-        );
-    </script>
     <style>
         input::-webkit-outer-spin-button,
         input::-webkit-inner-spin-button {
@@ -38,8 +34,14 @@
 </head>
 
 <body>
+    
+    <div id="loader" class="d-flex  justify-content-center">
+        <button class="btn btn-secondary btn-lg" type="button" style="margin-top:20% ;" disabled>
+            . . . .L<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>ading. . . .
+        </button>
+    </div>
     <br>
-    <div class="container">
+    <div class="container" id="content" style="display: none;">
         <nav class="navbar navbar-light bg-light">
             <div class="container">
                 <div class="">
@@ -66,23 +68,24 @@
                     <form autocomplete="on">
                         <div class="mb-3">
                             <label for="billVal" class="form-label">Bill</label>
-                            <input type="number" class="form-control" id="billVal" onkeydown="billValChange()"
-                                onchange="billValChange()" min="0" value="0" required>
+                            <br>
+                            <span class="minus" onclick="decr(0,'billVal')">-</span>
+                            <input type="text" value="0" onchange="billValChange()" id="billVal" />
+                            <span class="plus" onclick="incr(0,'billVal')">+</span>
                         </div>
                         <div class="mb-3 number">
                             <label for="tipPerc" class="form-label">Tip %</label>
                             <br>
-                            <span class="minus" onclick="decr(0,'tipPerc')">-</span>
-                            <input type="text" value="0" onchange="billValChange()"
-                                id="tipPerc" />
-                            <span class="plus" onclick="incr(0,'tipPerc')">+</span>
+                            <span class="minus" onclick="decr(1,'tipPerc')">-</span>
+                            <input type="text" value="0" onchange="billValChange()" id="tipPerc" />
+                            <span class="plus" onclick="incr(1,'tipPerc')">+</span>
                         </div>
                         <div class="mb-3 number">
                             <label for="peopleNum" class="form-label">Number Of People</label>
                             <br>
-                            <span class="minus" onclick="decr(1,'peopleNum')" >-</span>
+                            <span class="minus" onclick="decr(2,'peopleNum')" >-</span>
                             <input type="text" value="0" id="peopleNum" onchange="billValChange()" />
-                            <span class="plus" onclick="incr(1,'peopleNum')">+</span>
+                            <span class="plus" onclick="incr(2,'peopleNum')">+</span>
                         </div>
                     </form>
                 </div>
@@ -98,7 +101,7 @@
                                 </div>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <div class="d-inline">
-                                    <h4 style="font-size: 2.8rem; color:rgb(140, 143, 146);"><span class="currency">$</span><span id="tipVal">0.00</span></h4>
+                                    <h4 style="font-size: 2.8rem; color:rgb(140, 143, 146);"><span class="currency">$</span><span id="tipVal">0</span></h4>
                                 </div>
                             </div>
                         </div>
@@ -110,8 +113,7 @@
                                 </div>
                                 &nbsp;&nbsp;&nbsp;
                                 <div class="d-inline ">
-                                    <h4 style="font-size: 2.8rem; color:rgb(140, 143, 146);"><span
-                                            class="currency">$</span><span id="totalPerPerson">0.00</span></h4>
+                                    <h4 style="font-size: 2.8rem; color:rgb(140, 143, 146);"><span class="currency">$</span><span id="totalPerPerson">0</span></h4>
                                 </div>
                             </div>
                         </div>

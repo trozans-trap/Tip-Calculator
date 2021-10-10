@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var request = require('request');
 
-var getCalculator = require('../controller/dashboard');
 
 router.get('/home', (req,res)=>{
     let url = 'http://openexchangerates.org/api/currencies.json';
