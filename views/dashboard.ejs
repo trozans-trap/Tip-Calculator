@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tip Calculator</title>
-    <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.min.js" integrity="sha384-PsUw7Xwds7x08Ew3exXhqzbhuEYmA2xnwc8BuD6SEr+UmEHlX8/MCltYEodzWA4u" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.min.js" integrity="sha384-PsUw7Xwds7x08Ew3exXhqzbhuEYmA2xnwc8BuD6SEr+UmEHlX8/MCltYEodzWA4u" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/script.js" type="text/javascript" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css">
     <style>
         input::-webkit-outer-spin-button,
         input::-webkit-inner-spin-button {
@@ -47,26 +47,35 @@
             
         </nav>
         <div class="container">
-            <div class="row align-items-start">
+            <div class="row">
                 <div class="col-3 align-self-center " style="font-size: large ;font-weight: 500;">
                     <form autocomplete="on">
                         <div class="mb-3">
-                            <label for="bill" class="form-label">Bill</label>
-                            <input type="number" class="form-control" id="bill" min="1" required>
+                            <label for="billVal" class="form-label">Bill</label>
+                            <input type="number" class="form-control" id="billVal" min="1" required>
                         </div>
-                        <div class="number">
+                        <div class="mb-3 number">
+                            <label for="tipPerc" class="form-label">Tip %</label>
+                            <br>
                             <span class="minus">-</span>
-                            <input type="text" value="1"/>
+                            <input type="text" value="1" onchange="tipChange(this)" id="tipPerc" />
+                            <span class="plus">+</span>
+                        </div>
+                        <div class="mb-3 number">
+                            <label for="peopleNum" class="form-label">Number Of People</label>
+                            <br>
+                            <span class="minus">-</span>
+                            <input type="text" value="1" id="peopleNum"/>
                             <span class="plus">+</span>
                         </div>
                         <!-- <div class="mb-3">
                             <label for="tip%" class="form-label">Tip %</label>
                             <input type="number" class="form-control" id="tip%" min="0" max="100" required>
                         </div> -->
-                        <div class="mb-3">
+                        <!-- <div class="mb-3">
                             <label for="numberOfPeople" class="form-label">Number Of People</label>
                             <input type="number" class="form-control" id="numberOfPeople" min="1" required>
-                        </div>
+                        </div> -->
                         <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
                     </form>
                 </div>
@@ -79,7 +88,7 @@
                                     <!-- <div class="d-flex flex-column bd-highlight mb-3"> -->
                                         <div class="d-inline"><h4 style="font-size: 2.5rem; float: left;">Tip </h4></div>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <div class="d-inline"><h4 style="font-size: 2.8rem; color:rgb(140, 143, 146);"> $25.00</h4></div>
+                                        <div class="d-inline"><h4 style="font-size: 2.8rem; color:rgb(140, 143, 146);" id="tipVal"> $25.00</h4></div>
                                     <!-- </div> -->
                                 </div>
                                 
@@ -90,7 +99,7 @@
                                     <!-- <div class="d-flex flex-column bd-highlight mb-3"> -->
                                         <div class="d-inline" ><h4 style="font-size: 2.5rem;">Total </h4></div>
                                         &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <div class="d-inline " ><h4 style="font-size: 2.8rem; color:rgb(140, 143, 146);"> $275.00</h4></div>
+                                        <div class="d-inline " ><h4 id="totalPerPerson" style="font-size: 2.8rem; color:rgb(140, 143, 146);"> $275.00</h4></div>
                                     <!-- </div> -->
                                 </div>
                                 <!-- <div class="d-flex ">Per Person</div> -->

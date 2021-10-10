@@ -1,26 +1,29 @@
+/* body{
+    background-color: blue;
+} */
 span {cursor:pointer; }
-.number{
-    margin:100px;
-    background-color: aqua;
-}
+/* .number{ */
+    /* margin:100px; */
+    /* background-color: aqua; */
+/* } */
 .minus, .plus{
-    width:20px;
-    height:20px;
+    width:40px;
+    height:40px;
     background:#f2f2f2;
     border-radius:4px;
-    padding:8px 5px 8px 5px;
+    padding:4px ;
     border:1px solid #ddd;
-display: inline-block;
-vertical-align: middle;
-text-align: center;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
 }
 input{
-    height:34px;
-width: 100px;
-text-align: center;
-font-size: 26px;
+    height:40px;
+    width: 156px;
+    text-align: center;
+    font-size: 26px;
     border:1px solid #ddd;
     border-radius:4px;
-display: inline-block;
-vertical-align: middle;
+    display: inline-block;
+    vertical-align: middle;
 } 
