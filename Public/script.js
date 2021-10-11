@@ -2,10 +2,12 @@ setTimeout(()=>{
     document.getElementById("loader").innerHTML=""; 
     document.getElementById("content").style.display="block"
 }, 1000);
-// var currencies = '<%- JSON.stringify(curr) %>';
-// for(itr in currencies){
-    // console.log(JSON.parse(currencies));
-// }
+
+let dropdownChange = (val)=>{
+   document.getElementById("tipCurrencyCode").innerHTML=val;
+   document.getElementById("totalCurrencyCode").innerHTML=val;
+}
+
 let decr = (flag,id)=>{
     let val = document.getElementById(id).value;
     if(val<=0 || (flag==0 && parseInt(val)-50<0)){
@@ -23,6 +25,10 @@ let incr = (flag,id)=>{
         alert("Tip Percentage can't be more than 100 %");
         return false;
     }
+    if(flag==0 && parseInt(val)>1E18){
+        alert("Can't Handle Such big amount");
+        return;
+    }
     if(flag==0)document.getElementById(id).value=parseInt(val)+50;
     else document.getElementById(id).value=parseInt(val) + 1;
     billValChange();
@@ -37,7 +43,7 @@ let si = [
     {v: 1E9, s: "B"},
     {v: 1E12, s: "T"},
     {v: 1E15, s: "P"},
-    {v: 1E18, s: "E"}
+    {v: 1E18, s: "E"},
 ];
 
 let convertBig = (num)=>{
@@ -55,6 +61,10 @@ let billValChange = ()=>{
     billVal = document.getElementById("billVal").value;
     tipPerc = document.getElementById("tipPerc").value;
     peopleNum = document.getElementById("peopleNum").value;
+    if(billVal>= 1E18){
+        alert("Can't Handle Such big amount");
+        return;
+    }
     if(tipPerc<0 || tipPerc>100){
         alert("Invalid Tip Percentage");
         return;

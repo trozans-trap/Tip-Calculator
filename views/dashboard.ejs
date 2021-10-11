@@ -8,7 +8,19 @@
     <link rel = "icon" href = "https://static.vecteezy.com/system/resources/thumbnails/000/351/160/small/4__289_29.jpg" type = "image/x-icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="/style.css">
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
 </head>
 
 <body>
@@ -21,26 +33,22 @@
     <br>
     <div class="container" id="content" style="display: none;">
         <nav class="navbar navbar-light bg-light">
-            <div class="container">
                 <div class="">
-                    <h1><span class="badge bg-secondary text-light">Tip </span> <span
-                            class="badge bg-secondary text-light"> Calculator</span></h1>
+                    <h1><span class="badge bg-secondary text-light">Tip </span> <span class="badge bg-secondary text-light"> Calculator</span></h1>
                 </div>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown button
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
+                <div class="dropdown "  >
+                    <select class="selectpicker" onmousedown="this.value='';" onchange="dropdownChange(this.value);" style="background-color: #6c757d;">
+                        <% for (var key in curr) { %>
+                            <% if(  key  =="USD"){ %>
+                                <option selected="selected" value="<%= key %>" ><%= curr[key] %></option>
+                            <% }else{ %>
+                               <option value = "<%= key %>" ><%= curr[key] %></option>
+                            <% } %>
+                        <% } %>
+                    </select>
                 </div>
-            </div>
-
         </nav>
-        <div class="container">
+        <div class="container-md">
             <div class="row">
                 <div class="col-3 align-self-center " style="font-size: large ;font-weight: 500;">
                     <form autocomplete="on">
@@ -48,41 +56,43 @@
                             <label for="billVal" class="form-label">Bill</label>
                             <br>
                             <span class="minus" onclick="decr(0,'billVal')">-</span>
-                            <input type="text" value="0" onchange="billValChange()" id="billVal" />
+                            <input type="number" value="0" onchange="billValChange()" id="billVal" />
                             <span class="plus" onclick="incr(0,'billVal')">+</span>
                         </div>
                         <div class="mb-3 number">
                             <label for="tipPerc" class="form-label">Tip %</label>
                             <br>
                             <span class="minus" onclick="decr(1,'tipPerc')">-</span>
-                            <input type="text" value="0" onchange="billValChange()" id="tipPerc" />
+                            <input type="number" value="0" onchange="billValChange()" id="tipPerc" />
                             <span class="plus" onclick="incr(1,'tipPerc')">+</span>
                         </div>
                         <div class="mb-3 number">
                             <label for="peopleNum" class="form-label">Number Of People</label>
                             <br>
                             <span class="minus" onclick="decr(2,'peopleNum')" >-</span>
-                            <input type="text" value="0" id="peopleNum" onchange="billValChange()" />
+                            <input type="number" value="0" id="peopleNum" onchange="billValChange()" />
                             <span class="plus" onclick="incr(2,'peopleNum')">+</span>
                         </div>
                     </form>
                 </div>
                 <div class="col-3 align-self-center ">
                     <br><br>
-                    <div class="row align-items-center justify-content-center">
-
+                    <div class="align-items-center justify-content-center">
                         <div class="d-flex flex-column bd-highlight mb-3 justify-content-start">
                             <div class="d-flex flex-row mb-3 ">
                                 <div class="d-inline">
-                                    <h4 style="font-size: 2.5rem; float: left; margin-bottom: 0%;">Tip </h4>
+                                    <h4 style="font-size: 2.6rem; float: left; margin-bottom: 0%;">Tip </h4>
                                     <p class="justify-content-start">Per person</p>
                                 </div>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <div class="d-inline">
-                                    <h4 style="font-size: 2.8rem; color:rgb(140, 143, 146);"><span class="currency">$</span><span id="tipVal">0</span></h4>
+                                    <h4 style="font-size: 2.6rem;margin-bottom: 0%; color:rgb(140, 143, 146);"><span id="tipVal">0</span></h4>
+                                    <p class="justify-content-start " style="color:rgb(140, 143, 146);"> <span id="tipCurrencyCode">USD</span> </p>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div id="align-items-center justify-content-center">
                         <div class="d-flex flex-column bd-highlight mb-4 ">
                             <div class="d-flex flex-row mb-3 ">
                                 <div class="d-inline">
@@ -91,7 +101,8 @@
                                 </div>
                                 &nbsp;&nbsp;&nbsp;
                                 <div class="d-inline ">
-                                    <h4 style="font-size: 2.8rem; color:rgb(140, 143, 146);"><span class="currency">$</span><span id="totalPerPerson">0</span></h4>
+                                    <h4 style="font-size: 2.5rem; margin-bottom: 0% ;color:rgb(140, 143, 146);"><span id="totalPerPerson">0</span></h4>
+                                    <p class="justify-content-start " style="color:rgb(140, 143, 146); "><span id="totalCurrencyCode">USD</span> </p>
                                 </div>
                             </div>
                         </div>
@@ -103,28 +114,12 @@
             </div>
         </div>
     </div>
-    <style>
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        input[type=number] {
-            -moz-appearance: textfield;
-        }
-    </style>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
-        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.min.js"
-        integrity="sha384-PsUw7Xwds7x08Ew3exXhqzbhuEYmA2xnwc8BuD6SEr+UmEHlX8/MCltYEodzWA4u" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous">
-    </script>
+    <script src="/script.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/script.js" type="text/javascript" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/js/bootstrap-select.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/js/i18n/defaults-*.min.js"></script>
 </body>
 
 </html>
